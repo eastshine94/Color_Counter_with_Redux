@@ -1,9 +1,10 @@
 import React from 'react';
-import { Counter, Palette, WaitingList } from './components';
+import { Counter, WaitingList } from '~/components';
+import { PaletteContainer } from '~/containers';
 const App:React.FC = () => {
     return (
       <div>
-        <Palette selected="red" />
+        <PaletteContainer/>
         <Counter value={0} color="red" />
         <WaitingList />
       </div>

@@ -9,6 +9,7 @@ interface PaletteItemProps {
 
 interface PaletteProps {
   selected: string;
+  onSelect(color: string) : void;
 }
 
 const PaletteWrapper = styled.div`
@@ -62,13 +63,17 @@ const PaletteItem:React.FC<PaletteItemProps> = ({ color, active, onClick }) => {
   );
 };
 
-const Palette:React.FC<PaletteProps> = ({ selected }) => {
+const Palette:React.FC<PaletteProps> = ({ selected, onSelect }) => {
   return (
     <PaletteWrapper>
       <h2>색깔을 골라골라</h2>
       <ColorsWrapper>
         {colors.map(color => (
-          <PaletteItem color={color} key={color} active={selected === color} />
+          <PaletteItem color={color} 
+          key={color} 
+          active={selected === color} 
+          onClick={() => onSelect(color)}
+          />
         ))}
       </ColorsWrapper>
     </PaletteWrapper>

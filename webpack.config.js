@@ -1,15 +1,16 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 module.exports = {
   mode: "development",
 
   entry: "./src/index.tsx",
 
   resolve: {
-    extensions: [".ts", ".tsx", '.js']
+    extensions: [".ts", ".tsx", '.js'],
+    plugins: [new TsconfigPathsPlugin({ configFile: "./tsconfig.json" })]
   },
-  devtool: "source-map",
   module: {
     rules: [
       {
@@ -18,8 +19,8 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-          test: /\.tsx?$/,
-          loader: 'ts-loader'
+        test: /\.tsx?$/,
+        loader: 'ts-loader'
       }
     ]
   },
