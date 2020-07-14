@@ -1,11 +1,11 @@
 import React from 'react';
-import { Counter, WaitingList } from '~/components';
-import { PaletteContainer } from '~/containers';
+import { WaitingList } from '~/components';
+import { PaletteContainer, CounterContainer } from '~/containers';
 const App:React.FC = () => {
     return (
       <div>
         <PaletteContainer/>
-        <Counter value={0} color="red" />
+        <CounterContainer/>
         <WaitingList />
       </div>
     );
