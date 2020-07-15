@@ -3,8 +3,6 @@ const CHANGE_COLOR = 'counter/CHANGE_COLOR';
 const INCREMENT = 'counter/INCREMENT';
 const DECREMENT = 'counter/DECREMENT';
 
-
-
 // 액션 생성함수 정의
 export interface ChangeColorAction {
     type: typeof CHANGE_COLOR;
@@ -23,6 +21,12 @@ export interface DecrementAction {
 export const decrement = ():DecrementAction => ({type: DECREMENT});
 
 export type CounterActionTypes = ChangeColorAction|IncrementAction|DecrementAction
+
+export const actionCreators = {
+    changeColor,
+    increment,
+    decrement
+};
 
 // 초기 상태 정의
 export interface CounteState {
