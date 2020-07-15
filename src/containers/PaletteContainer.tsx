@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Palette from '~/components/Palette';
 import { changeColor, ChangeColorAction } from '~/store/modules/counter';
@@ -23,9 +22,7 @@ class PaletteContainer extends Component<Props> {
 const mapStateToProps = (state: RootState) => ({
     color: state.counter.color,
 })
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    changeColor: (color: string) => dispatch(changeColor(color))
-})
+const mapDispatchToProps = { changeColor }
 
 export default connect(
     mapStateToProps,

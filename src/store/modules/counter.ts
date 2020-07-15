@@ -30,13 +30,13 @@ export interface CounteState {
     number: number,
 }
 
-const initalState: CounteState = {
+const initialState: CounteState = {
     color: 'red',
     number: 0,
 };
 
 // 리듀서 작성
-export default function counter( state = initalState, action:CounterActionTypes){
+export default function counter( state = initialState, action:CounterActionTypes){
     switch (action.type){
         case CHANGE_COLOR:
             return{

@@ -1,12 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Waiting } from '../store/modules/waiting';
 
 interface WaitingItemProps {
   text: string; 
   entered?: boolean;
   onEnter?(): void;
   onLeave?(): void;
+}
+
+interface WaitingListProps {
+  input: string
+  waitingList: Array<Waiting>,
+  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
+  onSubmit(e: React.FormEvent<HTMLFormElement>): void;
+  onEnter(id: number): void;
+  onLeave(id: number): void;
 }
 
 const WaitingListWrapper = styled.div`
@@ -45,12 +54,12 @@ const WaitingListWrapper = styled.div`
       & + & {
         border-top: none;
       }
-      &.text {
+      & .text {
         flex: 1;
-        &.entered {
+      }
+      & .entered {
           text-decoration: line-through;
-          color: gray;
-        }
+          color: red;
       }
     }
   }
@@ -69,18 +78,26 @@ const WaitingItem: React.FC<WaitingItemProps> = ({ text, entered, onEnter, onLea
   );
 };
 
-const WaitingList:React.FC = () => {
+const WaitingList:React.FC<WaitingListProps> = ({ input, waitingList, onChange, onSubmit, onEnter, onLeave }) => {
+  const waitingItems = waitingList.map(w => (
+    <WaitingItem
+      key={w.id}
+      text={w.name}
+      entered={w.entered}
+      onEnter={() => onEnter(w.id)}
+      onLeave={() => onLeave(w.id)}
+    />
+  ))
+
   return (
     <WaitingListWrapper>
       <h2>대기자 명단</h2>
-      <form>
-        <input />
+      <form onSubmit={onSubmit}>
+        <input value={input} onChange={onChange} />
         <button>등록</button>
       </form>
       <ul>
-        <WaitingItem text="홍길동" entered />
-        <WaitingItem text="콩쥐" />
-        <WaitingItem text="팥쥐" />
+        {waitingItems}
       </ul>
     </WaitingListWrapper>
   );
